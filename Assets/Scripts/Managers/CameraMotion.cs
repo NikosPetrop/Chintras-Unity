@@ -5,6 +5,7 @@ public class CameraMotion : MonoBehaviour {
     [SerializeField] private float smoothing = 5f;
     [SerializeField] private Vector2 range = new Vector2(100f, 100f);
     [SerializeField] private int mouseScreenBoundary;
+    [SerializeField] private bool shouldUseMouseInputs;
 
     private Vector3 curPos, input;
 
@@ -25,21 +26,23 @@ public class CameraMotion : MonoBehaviour {
         var y = Input.GetAxisRaw("Vertical");
 
         // Mouse Inputs
-        if (x == 0) {
-            if (Input.mousePosition.x > Screen.width - mouseScreenBoundary) {
-                x = 1;
+        if (shouldUseMouseInputs) {
+            if (x == 0) {
+                if (Input.mousePosition.x > Screen.width - mouseScreenBoundary) {
+                    x = 1;
+                }
+                else if (Input.mousePosition.x < 0 + mouseScreenBoundary) {
+                    x = -1;
+                }
             }
-            else if (Input.mousePosition.x < 0 + mouseScreenBoundary) {
-                x = -1;
-            }
-        }
 
-        if (y == 0) {
-            if (Input.mousePosition.y > Screen.height - mouseScreenBoundary) {
-                y = 1;
-            }
-            else if (Input.mousePosition.y < 0 + mouseScreenBoundary) {
-                y = -1;
+            if (y == 0) {
+                if (Input.mousePosition.y > Screen.height - mouseScreenBoundary) {
+                    y = 1;
+                }
+                else if (Input.mousePosition.y < 0 + mouseScreenBoundary) {
+                    y = -1;
+                }
             }
         }
 

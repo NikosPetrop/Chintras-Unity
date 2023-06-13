@@ -1,4 +1,5 @@
 using System;
+using Chintras.Editor;
 using UnityEngine;
 
 namespace Chintras.Resources {
@@ -13,8 +14,10 @@ namespace Chintras.Resources {
         public virtual void Occupy(Chintra chintra) {
             occupiedChintra = chintra;
             occupiedChintra.StartTark();
-            Debug.Log($"{occupiedChintra.name} interacts with {gameObject.name}");
+            Utils.DebugLog($"{occupiedChintra.name} interacts with {gameObject.name}");
         }
+
+        public void AssignChintra(Chintra chintra) => chintra.MoveTo(transform.position);
 
         protected void ResourceFinished() {
             occupiedChintra.EndTask();

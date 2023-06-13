@@ -18,6 +18,7 @@ public class Chintra : MonoBehaviour {
             case State.Idle:
                 break;
             case State.Walking:
+                // Todo: Use pathfinding
                 var distance = Speed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, posToGo, distance);
                 break;
@@ -45,12 +46,9 @@ public class Chintra : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
-
     private void OnTriggerEnter(Collider other) {
-        var resource = other.GetComponentInParent<Resource>();
-        if (resource != null) {
-            resource.Occupy(this);
-        }
+        var occupiable = other.GetComponentInParent<IOccupiable>();
+        occupiable?.Occupy(this);
     }
     
     public enum State {
