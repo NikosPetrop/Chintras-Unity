@@ -1,11 +1,10 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class ResourceManager : MonoBehaviour {
     public static ResourceManager instance;
 
-    // TODO: Better Access
+    // TODO: Better Access with UI Manager
     public TMP_Text WoodCounter;
     public TMP_Text RockCounter;
 

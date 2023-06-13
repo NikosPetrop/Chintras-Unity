@@ -1,5 +1,3 @@
-using System;
-using Chintras.Resources;
 using UnityEngine;
 
 public class ChintraController : MonoBehaviour {
@@ -11,21 +9,19 @@ public class ChintraController : MonoBehaviour {
         }
         
         if (Input.GetMouseButtonDown(1)) {
-            GetMouseWorldPosition();
+            TryToOccupyAvailableChintra();
         }
     }
 
-    private void GetMouseWorldPosition() {
+    private void TryToOccupyAvailableChintra() {
         var screenPos = Input.mousePosition;
 
         if (Camera.main != null) {
             var ray = Camera.main.ScreenPointToRay(screenPos);
 
             if (Physics.Raycast(ray, out var hitData)) {
-                var interactable = hitData.collider.GetComponentInParent<Resource>();
-                if (interactable != null) { 
-                    chintra.MoveTo(interactable.transform.position);
-                }
+                var occupiable = hitData.collider.GetComponentInParent<IOccupiable>();
+                occupiable?.AssignChintra(chintra);
             }
         }
     }
