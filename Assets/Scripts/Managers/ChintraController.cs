@@ -1,5 +1,3 @@
-using System;
-using Chintras.Resources;
 using UnityEngine;
 
 public class ChintraController : MonoBehaviour {

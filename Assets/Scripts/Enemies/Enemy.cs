@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected float health;
     [SerializeField] protected float damage;
     [SerializeField] protected float range;
+    [SerializeField] protected float fireRate;
 
     public void DoDamage(float damageAmount) {
         health -= damageAmount;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    
+    
     
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
