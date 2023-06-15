@@ -29,4 +29,11 @@ public class Tower : MonoBehaviour, IOccupiable {
     }
 
     public bool IsActive => occupiedChintra != null;
+
+    public void DoDamage(float damageAmount) {
+        health -= damageAmount;
+        if (health <= 0) {
+            Destroy(gameObject);
+        }
+    }
 }
