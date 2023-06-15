@@ -8,24 +8,23 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected float fireRate;
     [SerializeField] protected float speed;
 
+    [Header("Debug")]
     [SerializeField] protected Tower targetTower; // Todo: This is hardcoded for implementation of attacking
     [SerializeField] protected bool shouldAttackTower = true;
-
-    private bool canAttack;
+    
     private float attackCD = 0f;
 
     private void Update() {
+        if (!shouldAttackTower) { return; }
         if (targetTower == null) { return; }
         
         var atkRange = (targetTower.transform.position - transform.position).magnitude;
         
         if (atkRange >= range) {
-            canAttack = false;
             var distance = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetTower.transform.position, distance);
         }
         else {
-            canAttack = true;
             Attack();
         }
     }
