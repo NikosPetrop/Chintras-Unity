@@ -215,6 +215,11 @@ MonoBehaviour:
   CurrentDurability: 0
   MaxDurability: 0
   Resource: 0
+  playerHand: {fileID: 0}
+  dotweenAnimation:
+    Scale: 1.5
+    Height: 160
+    Duration: 0.1
 --- !u!1 &98455101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1402,11 @@ MonoBehaviour:
   CurrentDurability: 0
   MaxDurability: 0
   Resource: 0
+  playerHand: {fileID: 0}
+  dotweenAnimation:
+    Scale: 1.5
+    Height: 160
+    Duration: 0.1
 --- !u!1 &733504530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1859,11 @@ MonoBehaviour:
   CurrentDurability: 0
   MaxDurability: 0
   Resource: 0
+  playerHand: {fileID: 0}
+  dotweenAnimation:
+    Scale: 1.5
+    Height: 160
+    Duration: 0.1
 --- !u!1 &911244809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,6 +1956,11 @@ MonoBehaviour:
   CurrentDurability: 0
   MaxDurability: 0
   Resource: 0
+  playerHand: {fileID: 0}
+  dotweenAnimation:
+    Scale: 1.5
+    Height: 160
+    Duration: 0.1
 --- !u!1 &973866383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,6 +2214,11 @@ MonoBehaviour:
   CurrentDurability: 0
   MaxDurability: 0
   Resource: 0
+  playerHand: {fileID: 0}
+  dotweenAnimation:
+    Scale: 1.5
+    Height: 160
+    Duration: 0.1
 --- !u!114 &1352695471 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8423648988220695354, guid: 2b5e205a9df8740408b7ab7682da69b0,
