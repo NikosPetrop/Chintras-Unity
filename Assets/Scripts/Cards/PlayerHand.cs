@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHand : MonoBehaviour {
@@ -52,6 +53,17 @@ public class PlayerHand : MonoBehaviour {
 
             card.Transform.localPosition = newPosition;
             card.Transform.localRotation = Quaternion.Euler(0f, 0f, -angle);
+            card.Initialize();
         }
+    }
+
+    public List<BaseResourceCard> GetCards() {
+        var cards = new List<BaseResourceCard>();
+        for (int i = 0; i < transform.childCount; i++) {
+            var card = transform.GetChild(i).GetComponent<BaseResourceCard>();
+            cards.Add(card);
+        }
+
+        return cards;
     }
 }
