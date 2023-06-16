@@ -4,14 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler {
-    
-    
     public int CurrentDurability;
     public int MaxDurability;
     public ResourceType Resource;
     public PlayerHand playerHand;
 
-    public RectTransform Transform { get; private set; }
+    public RectTransform RTransform { get; private set; }
     
     [SerializeField] private Animation dotweenAnimation;
 
@@ -24,31 +22,47 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 
     private void Awake() {
-        Transform = GetComponent<RectTransform>();
+        RTransform = GetComponent<RectTransform>();
         playerHand = FindObjectOfType<PlayerHand>();
     }
 
-    public void Initialize() {
-        Transform.GetLocalPositionAndRotation(out startingPosition, out startingRotation);
+    public void SetHandPositionAndRotation(Vector3 newPosition, Quaternion newRotation) {
+        startingPosition = newPosition;
+        startingRotation = newRotation;
+        RTransform.SetLocalPositionAndRotation(startingPosition, startingRotation);
     }
 
-    private void Start() { }
+    public void Initialize(int durability) {
+        MaxDurability = durability;
+    }
+    
+    public void DrawAnimation(Vector3 overridePosition) {
+        var sequence = DOTween.Sequence();
+        // Positioning before Animation
+        sequence.Append(RTransform.DOScale(0, 0));
+        sequence.Join(RTransform.DOMove(overridePosition, 0));
+        
+        // Actual animation
+        sequence.Append(RTransform.DOScale(1, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
+    }
 
     public virtual void OnPointerEnter(PointerEventData eventData) {
         startingIndex = transform.GetSiblingIndex();
         transform.SetAsLastSibling();
         var sequence = DOTween.Sequence();
-        sequence.Append(Transform.DOScale(dotweenAnimation.Scale, dotweenAnimation.Duration));
-        sequence.Join(Transform.DOLocalMoveY(dotweenAnimation.Height, dotweenAnimation.Duration));
-        sequence.Join(Transform.DOLocalRotate(Vector3.zero, dotweenAnimation.Duration));
+        sequence.Append(RTransform.DOScale(dotweenAnimation.Scale, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalMoveY(dotweenAnimation.Height, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalRotate(Vector3.zero, dotweenAnimation.Duration));
     }
 
     public virtual void OnPointerExit(PointerEventData eventData) {
         transform.SetSiblingIndex(startingIndex);
         var sequence = DOTween.Sequence();
-        sequence.Append(Transform.DOScale(1f, dotweenAnimation.Duration));
-        sequence.Join(Transform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
-        sequence.Join(Transform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
+        sequence.Append(RTransform.DOScale(1f, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
+        sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
     }
 
     public virtual void OnPointerClick(PointerEventData eventData) {
@@ -62,25 +76,25 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
             isDragging = true;
         }
     }
-    
+
     public virtual void OnPointerUp(PointerEventData eventData) {
         if (eventData.button == PointerEventData.InputButton.Left) {
             isDragging = false;
-            Transform.SetLocalPositionAndRotation(startingPosition, startingRotation);
+            RTransform.SetLocalPositionAndRotation(startingPosition, startingRotation);
         }
     }
 
     public void OnDrag(PointerEventData eventData) {
         if (isDragging) {
-            Transform.position = Input.mousePosition;
+            RTransform.position = Input.mousePosition;
         }
     }
 
     [Serializable]
     private class Animation {
-        public float Scale;
-        public float Height;
-        public float Duration;
+        public float Scale = 1.5f;
+        public float Height = 160f;
+        public float Duration = 0.1f;
     }
 
     public enum ResourceType {

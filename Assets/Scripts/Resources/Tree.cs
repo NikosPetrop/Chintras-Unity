@@ -7,7 +7,7 @@ namespace Chintras.Resources {
             if (occupiedChintra != null) {
                 timer += Time.deltaTime;
                 if (timer >= duration) {
-                    ResourceManager.instance.AddWood(Random.Range(minAmount, maxAmount + 1));
+                    Deck.instance.AddCard(BaseResourceCard.ResourceType.Wood,3);
                     ResourceFinished();
                 }
             }
