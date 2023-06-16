@@ -1248,10 +1248,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e7f37039c42dd9bb0b72d64ef9922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSpacing: 0.5
+  cardSpacing: -50
   tiltAngle: 3.5
   heightOffset: 20
-  NumberOfCards: 0
 --- !u!4 &615820567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 918011816464724218, guid: 8e35cf617c7cf9c4788601daaf0eea1e,

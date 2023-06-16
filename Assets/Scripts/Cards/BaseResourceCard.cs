@@ -7,7 +7,6 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public int CurrentDurability;
     public int MaxDurability;
     public ResourceType Resource;
-    public PlayerHand playerHand;
 
     public RectTransform RTransform { get; private set; }
     
@@ -20,10 +19,8 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private Vector2 originalLocalPointerPosition;
     private int startingIndex;
 
-
     private void Awake() {
         RTransform = GetComponent<RectTransform>();
-        playerHand = FindObjectOfType<PlayerHand>();
     }
 
     public void SetHandPositionAndRotation(Vector3 newPosition, Quaternion newRotation) {
@@ -40,12 +37,12 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
         var sequence = DOTween.Sequence();
         // Positioning before Animation
         sequence.Append(RTransform.DOScale(0, 0));
-        sequence.Join(RTransform.DOMove(overridePosition, 0));
+        //sequence.Join(RTransform.DOMove(overridePosition, 0));
         
         // Actual animation
         sequence.Append(RTransform.DOScale(1, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
+        // sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
+        // sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData) {
