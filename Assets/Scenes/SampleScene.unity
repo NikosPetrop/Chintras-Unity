@@ -219,10 +219,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefabs:
     ResourcesPrefabs:
-      RockCardPrefab: {fileID: 1000562019730738760, guid: 66dce475545949a4ea7a0401fb72cea4,
+      RockCardPrefab: {fileID: -6230510991489862867, guid: df86a9096bf435c4abfd342196944bc0,
         type: 3}
-      WoodCardPrefab: {fileID: 2021480831034094496, guid: fc3f75cfb2d372b41bdcad0b5aa54ea0,
+      WoodCardPrefab: {fileID: 8714749602461240882, guid: 5b6610c25f853cf409f88430b9483195,
         type: 3}
+--- !u!1 &153360142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871848683905481752, guid: f3bc1a38570a3124ea0c85170332b2f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3249618377905027260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &153360144
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153360142}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4752e576b367ab4c99b00a70697049e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &205201449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1248,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666e7f37039c42dd9bb0b72d64ef9922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSpacing: -50
+  cardSpacing: -38.8
   tiltAngle: 3.5
   heightOffset: 20
 --- !u!4 &615820567 stripped
@@ -1392,6 +1419,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733504530}
   m_CullTransparentMesh: 1
+--- !u!1 &740600841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8891902951008243552, guid: 2b5e205a9df8740408b7ab7682da69b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1766984261774452285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &740600843
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740600841}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb1f962c5d61d364d84bc85d0ab293cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &797928559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2248,7 +2302,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8891902951008243552, guid: 2b5e205a9df8740408b7ab7682da69b0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 740600843}
   m_SourcePrefab: {fileID: 100100000, guid: 2b5e205a9df8740408b7ab7682da69b0, type: 3}
 --- !u!222 &1904431565699237134
 CanvasRenderer:
@@ -2329,7 +2387,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8871848683905481752, guid: f3bc1a38570a3124ea0c85170332b2f0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 153360144}
   m_SourcePrefab: {fileID: 100100000, guid: f3bc1a38570a3124ea0c85170332b2f0, type: 3}
 --- !u!1001 &3796354819400812098
 PrefabInstance:
