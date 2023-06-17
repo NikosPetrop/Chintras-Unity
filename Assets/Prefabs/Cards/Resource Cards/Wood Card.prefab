@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wood Card
       objectReference: {fileID: 0}
+    - target: {fileID: 6596220922112339841, guid: b07ffd92b3ac7714aa518613bee2a94d,
+        type: 3}
+      propertyPath: m_text
+      value: This is a wood :O
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6568825123033490153, guid: b07ffd92b3ac7714aa518613bee2a94d, type: 3}
     m_RemovedGameObjects: []

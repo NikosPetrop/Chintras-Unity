@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 1027997844023526307, guid: b07ffd92b3ac7714aa518613bee2a94d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1027997844023526307, guid: b07ffd92b3ac7714aa518613bee2a94d,
         type: 3}
@@ -116,7 +116,12 @@ PrefabInstance:
     - target: {fileID: 5276982523385065567, guid: b07ffd92b3ac7714aa518613bee2a94d,
         type: 3}
       propertyPath: m_Name
-      value: Rock Card 1 Variant
+      value: Rock Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596220922112339841, guid: b07ffd92b3ac7714aa518613bee2a94d,
+        type: 3}
+      propertyPath: m_text
+      value: This is a rock :O
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6568825123033490153, guid: b07ffd92b3ac7714aa518613bee2a94d, type: 3}

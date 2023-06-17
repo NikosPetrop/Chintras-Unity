@@ -13,6 +13,14 @@ public class Chintra : MonoBehaviour {
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.Keypad0)) {
+            state = State.Idle;
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Keypad1)) {
+            state = State.Walking;
+        }
+        
         switch (state) {
             case State.Idle:
                 break;
@@ -49,6 +57,8 @@ public class Chintra : MonoBehaviour {
         var occupiable = other.GetComponentInParent<IOccupiable>();
         occupiable?.Occupy(this);
     }
+
+    public State GetState() => state;
     
     public enum State {
         Idle,
