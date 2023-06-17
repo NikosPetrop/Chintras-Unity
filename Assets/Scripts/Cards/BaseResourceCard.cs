@@ -40,7 +40,7 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
         //sequence.Join(RTransform.DOMove(overridePosition, 0));
         
         // Actual animation
-        sequence.Append(RTransform.DOScale(1, dotweenAnimation.Duration));
+        sequence.Append(RTransform.DOScale(1, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
         // sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
         // sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
     }
@@ -49,17 +49,17 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
         startingIndex = transform.GetSiblingIndex();
         transform.SetAsLastSibling();
         var sequence = DOTween.Sequence();
-        sequence.Append(RTransform.DOScale(dotweenAnimation.Scale, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalMoveY(dotweenAnimation.Height, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalRotate(Vector3.zero, dotweenAnimation.Duration));
+        sequence.Append(RTransform.DOScale(dotweenAnimation.Scale, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
+        sequence.Join(RTransform.DOLocalMoveY(dotweenAnimation.Height, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
+        sequence.Join(RTransform.DOLocalRotate(Vector3.zero, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
     }
 
     public virtual void OnPointerExit(PointerEventData eventData) {
         transform.SetSiblingIndex(startingIndex);
         var sequence = DOTween.Sequence();
-        sequence.Append(RTransform.DOScale(1f, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration));
-        sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration));
+        sequence.Append(RTransform.DOScale(1f, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
+        sequence.Join(RTransform.DOLocalMove(startingPosition, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
+        sequence.Join(RTransform.DOLocalRotate(startingRotation.eulerAngles, dotweenAnimation.Duration).SetEase(dotweenAnimation.Ease));
     }
 
     public virtual void OnPointerClick(PointerEventData eventData) {
@@ -92,6 +92,7 @@ public class BaseResourceCard : MonoBehaviour, IPointerEnterHandler, IPointerExi
         public float Scale = 1.5f;
         public float Height = 160f;
         public float Duration = 0.1f;
+        public Ease Ease = Ease.Linear;
     }
 
     public enum ResourceType {
