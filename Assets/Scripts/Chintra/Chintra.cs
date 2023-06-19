@@ -1,46 +1,32 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Chintra : MonoBehaviour {
     public float Speed = 5f;
 
     private State state;
-    private Vector3 posToGo;
-    
-    
+    private NavMeshAgent agent;
+    private IOccupiable targetOccupation;
+
     private void Start() {
-        
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Keypad0)) {
-            state = State.Idle;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Keypad1)) {
-            state = State.Walking;
-        }
-        
-        switch (state) {
-            case State.Idle:
-                break;
-            case State.Walking:
-                // Todo: Use pathfinding
-                var distance = Speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, posToGo, distance);
-                break;
-            case State.Occupied:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        state = agent.hasPath ? State.Walking : State.Idle;
     }
-
-    //TODO: Implement Command Patern later
-    public void MoveTo(Vector3 targetPos) {
-        state = State.Walking;
+    
+    public void MoveTo(Vector3 targetPos, IOccupiable occupation = null) {
         gameObject.SetActive(true);
-        posToGo = targetPos;
+        var successful = agent.SetDestination(targetPos);
+        if (!successful) {
+            Debug.LogWarning($"{gameObject.name}'s agent was not properly set!");
+            return;
+        }
+        targetOccupation = occupation;
     }
 
     public void StartTark() {
@@ -51,11 +37,14 @@ public class Chintra : MonoBehaviour {
     public void EndTask() {
         state = State.Idle;
         gameObject.SetActive(true);
+        targetOccupation = null;
     }
 
     private void OnTriggerEnter(Collider other) {
-        var occupiable = other.GetComponentInParent<IOccupiable>();
-        occupiable?.Occupy(this);
+        var occupiable = other.GetComponent<IOccupiable>();
+        if (occupiable != null && occupiable == targetOccupation) {
+            occupiable?.Occupy(this);
+        }
     }
 
     public State GetState() => state;

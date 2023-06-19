@@ -1,7 +1,7 @@
 using Chintras.Editor;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, IOccupiable {
+public class Tower : MonoBehaviour, IOccupiable,IDamagable {
     [SerializeField] protected float health;
     [SerializeField] protected float damage;
     [SerializeField] protected float range;
@@ -20,20 +20,21 @@ public class Tower : MonoBehaviour, IOccupiable {
         // In Case of Click again - unassign chintra
         LeaveTower();
     }
-
-    public void AssignChintra(Chintra chintra) => chintra.MoveTo(transform.position);
-
+    
     protected void LeaveTower() {
         occupiedChintra.EndTask();
         occupiedChintra = null;
     }
 
     public bool IsActive => occupiedChintra != null;
-
-    public void DoDamage(float damageAmount) {
-        health -= damageAmount;
+    
+    public void TakeDamage(float damageAmount) {
+        health -= damage;
         if (health <= 0) {
             Destroy(gameObject);
+            NavMeshUpdater.RequestNavMeshUpdate();
         }
     }
+
+    public Transform GetTransform() => transform;
 }

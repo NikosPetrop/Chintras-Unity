@@ -48,7 +48,7 @@ public class SingleTargetTower : Tower {
 
     private void Attack() {
         if (attackCD <= 0) {
-            currentTarget.DoDamage(damage);
+            currentTarget.TakeDamage(damage);
             attackCD = 1f / fireRate;
         }
         else {

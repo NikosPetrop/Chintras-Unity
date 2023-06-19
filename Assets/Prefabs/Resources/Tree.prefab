@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 7751957181484282926}
   - component: {fileID: 4953389824713343391}
   - component: {fileID: 4805912197539832846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ Transform:
   m_Children:
   - {fileID: 6330547025226215552}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4953389824713343391
 MonoBehaviour:

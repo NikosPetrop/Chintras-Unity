@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour {
+[RequireComponent(typeof(NavMeshAgent))]
+public class Enemy : MonoBehaviour , IDamagable {
     [SerializeField] protected float health;
     [SerializeField] protected float damage;
     [SerializeField] protected float range;
@@ -13,6 +15,11 @@ public class Enemy : MonoBehaviour {
     [SerializeField] protected bool shouldAttackTower = true;
     
     private float attackCD = 0f;
+    private NavMeshAgent agent;
+
+    private void Start() {
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     private void Update() {
         if (!shouldAttackTower) { return; }
@@ -31,7 +38,7 @@ public class Enemy : MonoBehaviour {
     
     private void Attack() {
         if (attackCD <= 0) {
-            targetTower.DoDamage(damage);
+            targetTower.TakeDamage(damage);
             attackCD = 1f / fireRate;
         }
         else {
@@ -39,7 +46,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void DoDamage(float damageAmount) {
+    public void TakeDamage(float damageAmount) {
         health -= damageAmount;
         if (health <= 0) {
             Destroy(gameObject);
@@ -50,4 +57,8 @@ public class Enemy : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    
+
+    public Transform GetTransform() => transform;
 }
