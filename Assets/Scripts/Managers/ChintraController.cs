@@ -2,16 +2,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChintraController : MonoBehaviour {
-    [SerializeField] private Chintra chintra;
-    
+    private List<Chintra> selectedChintras = new List<Chintra>(10);
+
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
+            // Deselect
+            foreach (var chintra in selectedChintras) {
+                chintra.SetSelector(false);
+            }
+            selectedChintras.Clear();
             
+            // Select
+            var screenPos = Input.mousePosition;
+            if (Camera.main != null) {
+                var ray = Camera.main.ScreenPointToRay(screenPos);
+
+                if (Physics.Raycast(ray, out var hitData)) {
+                    var chintra = hitData.collider.GetComponent<Chintra>();
+                    if (chintra != null) {
+                        selectedChintras.Add(chintra);
+                        chintra.SetSelector(true);
+                    }
+                }
+            }
         }
         
+        // Command
         if (Input.GetMouseButtonDown(1)) {
             if (GetWalkOrInteractRaycastHit(out var point,out var occupiable)) {
-                chintra.MoveTo(point.GetValueOrDefault(), occupiable);
+                foreach (var chintra in selectedChintras) {
+                    chintra.MoveTo(point.GetValueOrDefault(), occupiable);
+                }
             }
         }
     }

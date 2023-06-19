@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Chintra : MonoBehaviour {
     public float Speed = 5f;
 
+    [SerializeField] private GameObject selector;
+
     private State state;
     private NavMeshAgent agent;
     private IOccupiable targetOccupation;
@@ -47,6 +49,7 @@ public class Chintra : MonoBehaviour {
         }
     }
 
+    public void SetSelector(bool enable) => selector.SetActive(enable);
     public State GetState() => state;
     
     public enum State {
